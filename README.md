@@ -2,7 +2,7 @@
 
 [Paper](http://papers.nips.cc/paper/7439-non-local-recurrent-network-for-image-restoration.pdf) | [Bibtex](#Bibtex)
 
-This is the original version of the NLRN code.
+This is the original version of the NLRN code. A newer version can be found [here](https://github.com/Ding-Liu/NLRN).
 
 ## Usage
 ### Denoising
@@ -20,7 +20,7 @@ cd BSDS500
 find train_gray_rgb2gray/*.png test_gray_rgb2gray/*.png > ../train.list
 ```
 #### Preparing Set12 and BSD68 for evaluation
-These two datasets can be downloaded at `https://github.com/cszn/DnCNN.git`. Move them to `./data` 
+These two datasets can be downloaded from [here](https://github.com/cszn/DnCNN.git). Move them to `./data` 
 #### Training on 400 images (train and test) of BSD500
 Under the directory of this repository
 ```
@@ -32,6 +32,9 @@ Noise level (sigma): [15](https://drive.google.com/file/d/19SoZaee_7kFzwnLQvY0uR
 ```
 bash test.sh
 ```
+## Dependencies
+- Python 2.7
+- TensorFlow 1.10
 ## Bibtex
 ```
 @inproceedings{liu2018non,
