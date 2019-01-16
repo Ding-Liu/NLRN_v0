@@ -7,7 +7,7 @@ This is the original version of the NLRN code. A newer version can be found [her
 ## Usage
 ### Denoising
 #### Preparing 400 images from BSDS500 for training
-Under the directory of this repository
+Under the root directory of this repository
 ```
 mkdir -p data
 ```
@@ -22,7 +22,7 @@ find train_gray_rgb2gray/*.png test_gray_rgb2gray/*.png > ../train.list
 #### Preparing Set12 and BSD68 for evaluation
 These two datasets can be downloaded from [here](https://github.com/cszn/DnCNN.git). Move them to `./data` 
 #### Training on 400 images (train and test) of BSD500
-Under the directory of this repository
+Under the root directory of this repository
 ```
 bash train.sh
 ```
