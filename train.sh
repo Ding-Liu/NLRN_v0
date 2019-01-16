@@ -2,8 +2,8 @@
 export CUDA_VISIBLE_DEVICES=1
 
 DATA_NAME="data"
-FLIST="/ws/ifp-06_1/dingliu2/data/SR/BSDS500/data/images/train_test_rgb2gray.list"
-ROOT_FOLDER="/ws/ifp-06_1/dingliu2/data/SR/BSDS500/data/images/"
+FLIST="data/BSDS500/train.list"
+ROOT_FOLDER="data/BSDS500/"
 LEARNING_RATE=1e-3
 BATCH_SIZE=16
 SCRIPT="train.py"
