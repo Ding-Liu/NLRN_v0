@@ -11,7 +11,7 @@ Under the root directory of this repository
 ```
 mkdir -p data
 ```
-Download the compressed 400 training images from BSDS500 [here](https://drive.google.com/file/d/1vO65GolyMqUNc3_K9h-dHLiWZcZP2g9E/view?usp=sharing). Move the compressed file `BSDS500.tar.gz` to `./data`
+Download the compressed 400 training images in grayscale [here](https://drive.google.com/file/d/1vO65GolyMqUNc3_K9h-dHLiWZcZP2g9E/view?usp=sharing). They are converted from the color images in [BSDS500](https://www2.eecs.berkeley.edu/Research/Projects/CS/vision/grouping/resources.html). Move the compressed file `BSDS500.tar.gz` to `./data`
 Uncompress them and generate the training file name list:
 ```
 cd data
