@@ -20,10 +20,18 @@ cd BSDS500
 find train_gray_rgb2gray/*.png test_gray_rgb2gray/*.png > ../train.list
 ```
 #### Preparing Set12 and BSD68 for evaluation
-These two datasets can be downloaded at `/ws/ifp-06_1/dingliu2/data/Denoising/Set12/`. Move them to `./data` and generate their file name list accordingly.
+These two datasets can be downloaded at `https://github.com/cszn/DnCNN.git`. Move them to `./data` 
+#### Training on 400 images (train and test) of BSD500
+Under the directory of this repository
+```
+bash train.sh
+```
 #### Released models
 Noise level (sigma): [15](https://drive.google.com/file/d/19SoZaee_7kFzwnLQvY0uR9NbQl0ddSPG/view?usp=sharing) [25](https://drive.google.com/file/d/1uvD4MuaK1DpZugnlybAccjxvVe1O0jFO/view?usp=sharing) [50](https://drive.google.com/file/d/1Q6nLh4dAvDDEfCzWu6C_GUIrn4paKw9W/view?usp=sharing)
-
+#### Prediction on Set12 and BSD68
+```
+bash test.sh
+```
 ## Bibtex
 ```
 @inproceedings{liu2018non,
