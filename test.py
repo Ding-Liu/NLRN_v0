@@ -28,6 +28,9 @@ flags.DEFINE_integer('sigma', '25', 'standard deviation of Gaussian noise for te
 data = importlib.import_module('data_providers.' + FLAGS.data_name)
 model = importlib.import_module('models.' + FLAGS.model_name)
 
+if not os.path.exists(FLAGS.output_path):
+    os.makedirs(FLAGS.output_path)
+
 with tf.Graph().as_default():
     residual = True  # if true, use residual learning
     datafiles = [f for f in os.listdir(FLAGS.image_folder) if
@@ -49,7 +52,7 @@ with tf.Graph().as_default():
             dtmp = scipy.io.loadmat(FLAGS.noisy_image_folder + file_basename + '.mat')
             noisy_img = dtmp['image'].astype(np.float32) * 255.0  # range to be 0~255
         else:  # online generate noise
-            noisy_img = np.random.normal(0, FLAGS.sigma, *img.shape) + img
+            noisy_img = np.random.normal(0, FLAGS.sigma, img.shape) + img
         noisy_image_list.append(noisy_img)
         h_idx_list = list(range(0, noisy_img.shape[0] - FLAGS.patch_size, stride)) + [noisy_img.shape[0] - FLAGS.patch_size]
         w_idx_list = list(range(0, noisy_img.shape[1] - FLAGS.patch_size, stride)) + [noisy_img.shape[1] - FLAGS.patch_size]
