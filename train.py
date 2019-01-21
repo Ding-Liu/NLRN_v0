@@ -13,9 +13,6 @@ flags.DEFINE_string('root_folder', '/ws/ifp-06_1/dingliu2/data/Pascal_VOC2007/VO
                     'root folder of the training data.')
 flags.DEFINE_string('flist', '/ws/ifp-06_1/dingliu2/DeepDenoising-v2/data/Pascal_VOC2007_images.txt',
                     'file list put the training data.')
-# flags.DEFINE_string('lr_flist', 'flist/lrX2.flist',
-#                     'Directory to put the training data.')
-# flags.DEFINE_integer('scale', '2', 'batch size for training')
 flags.DEFINE_integer('sigma', '25', 'standard deviation of Gaussian noise for training')
 flags.DEFINE_string('model_name', 'model_resnet_up',
                     'Directory to put the training data.')
@@ -34,16 +31,11 @@ flags.DEFINE_integer('state_num', '12', 'Number of recurrent states in model')
 flags.DEFINE_boolean('continue_training', True, 'If true, continue training from a checkpoint')
 flags.DEFINE_string('log_dir', './tfboard_logs', 'TensorBoard logs are stored here')
 
-# data = __import__(FLAGS.data_name)
-# model = __import__(FLAGS.model_name)
 data = importlib.import_module('data_providers.' + FLAGS.data_name)
 model = importlib.import_module('models.' + FLAGS.model_name)
 
-# load_weight = True
-
 g = tf.Graph()
 
-# with tf.Graph().as_default():
 with g.as_default():
     with tf.device('/cpu:0'):
         target_patches, source_patches = data.dataset(
@@ -88,10 +80,8 @@ with g.as_default():
         # optimizer = tf.train.AdamOptimizer(FLAGS.learning_rate).minimize(loss)
 
         update_ops = tf.get_collection(tf.GraphKeys.UPDATE_OPS)
-        # import code; code.interact(local=locals())
         with tf.control_dependencies(update_ops):
             optimizer = tf.train.AdamOptimizer(learning_rate=learning_rate)
-            # optimizer = tf.train.MomentumOptimizer(learning_rate=learning_rate, momentum=0.9)
             gvs = optimizer.compute_gradients(loss)
             # gradient clipping
             capped_gvs = [(tf.clip_by_norm(grad, 2.5), var) for grad, var in gvs]
@@ -135,7 +125,6 @@ with g.as_default():
         try:
             sess.run(stage)
             start_time = time.time()
-            # print ('learning rate: %g' % FLAGS.learning_rate)
             while not coord.should_stop():
                 # _, _, training_loss = sess.run(
                 #     [stage, optimizer, loss])
@@ -151,8 +140,6 @@ with g.as_default():
                     end_time = time.time()
                     smoothed_loss = sum(loss_list) / float(smoothed_loss_batch_num)
                     batch_time = smoothed_loss_batch_num / float(end_time - start_time)
-                    # print ('%s batch num: %d, loss: %7.3f, smoothed loss: %7.3f, %.4f batch/sec' %
-                    #        (time.ctime(), cnt, training_loss, smoothed_loss, batch_time))
                     print ('%s batch num: %d, lr: %g, smoothed loss: %7.3f, %.4f batch/sec' %
                            (time.ctime(), cnt+1, lr, smoothed_loss, batch_time))
                     start_time = time.time()

@@ -1,6 +1,5 @@
 import tensorflow as tf
 import math
-# import util
 import os
 import scipy.misc
 import scipy.io
@@ -69,17 +68,13 @@ with tf.Graph().as_default():
     with tf.variable_scope("model"):
         output_image = model.build_model(model_input=input_image_reshaped, state_num=FLAGS.state_num, is_training=False)
 
-    init = tf.global_variables_initializer()
+    # init = tf.global_variables_initializer()
     init_local = tf.local_variables_initializer()
-    # model_vars = tf.get_collection(tf.GraphKeys.GLOBAL_VARIABLES, scope='model')
-    # saver = tf.train.Saver(var_list=model_vars)
+
     saver = tf.train.Saver()
     error_acc = .0
     psnr_acc = .0
     acc = 0
-
-    mask1_list = []
-    mask2_list = []
 
     with tf.Session() as sess:
         sess.run(init_local)
