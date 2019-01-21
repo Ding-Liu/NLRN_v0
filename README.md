@@ -29,9 +29,23 @@ bash train.sh
 #### Released models
 Noise level (sigma): [15](https://drive.google.com/file/d/19SoZaee_7kFzwnLQvY0uR9NbQl0ddSPG/view?usp=sharing) [25](https://drive.google.com/file/d/1uvD4MuaK1DpZugnlybAccjxvVe1O0jFO/view?usp=sharing) [50](https://drive.google.com/file/d/1Q6nLh4dAvDDEfCzWu6C_GUIrn4paKw9W/view?usp=sharing)
 #### Prediction on Set12 and BSD68
+Unzip the downloaded files and move them under `./checkpoints`
 ```
 bash test.sh
 ```
+
+### Image Super-Resolution
+
+#### Released models
+The model can be downloaded [here](https://drive.google.com/file/d/1VWa_IcYClCMaaPqiWNzgPRJfaTB-zSni/view?usp=sharing).
+#### Preparing Set5 and Set14 for evaluation
+These two datasets can be downloaded from [here](https://github.com/cszn/DnCNN.git). Move them to `./data`
+#### Prediction on Set5 and Set14
+Unzip the downloaded files and move them under `./checkpoints`
+```
+bash test_sr.sh
+```
+
 ## Dependencies
 - Python 2.7
 - TensorFlow 1.10
